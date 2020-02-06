@@ -8,7 +8,7 @@ import datetime as dt
 
 
 import sklearn.cluster as cluster
-from sklearn.cluster import KMeans
+
 from sklearn.decomposition import PCA
 from sklearn.mixture import GaussianMixture
 
@@ -26,11 +26,11 @@ import causalImpact as cimpact
 import RFM as rfm
 
 def main():
-	original = di.read_file(config.NAME_DATA)
+	original = di.read_file(config.NAME_DATA,config.DATE_COL)
 	df = di.remove_na(original,config.COLS_WITH_NA)
 	df = di.remove_negative(df,config.NEGATIVE_COL)
-	now = dt.date(config.REFERENCE_DATE)
-	rfmtable = rfm.calculate_rfm(df,GROUP_BY_COL,LIST_COL_AGG,now)
+	now = dt.date(config.REFERENCE_YEAR ,config.REFERENCE_Month,config.REFERENCE_day)
+	rfmtable = rfm.calculate_rfm(df,config.GROUP_BY_COL,config.LIST_COL_AGG,now)
 	df_normalized = di.normalise_col(rfmtable)
 	#Kmeans stuff
 	matrix = kc.get_matrix(df_normalized)
@@ -41,7 +41,7 @@ def main():
 	before_ci_df = di.give_cluster_df(merged_df,config.CLUSTER_WANT)
 
 	#CI stuff
-	ci = cimpact.causalImpact(before_ci_df)
+	ci = cimpact.causal_impact(before_ci_df)
 	cimpact.plot_ci(ci)
 
 

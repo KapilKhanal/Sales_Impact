@@ -2,8 +2,8 @@ import typing
 import logging
 import numpy as np
 import pandas as pd
-def read_file(file):
-	sales_file = pd.read_csv(file)
+def read_file(file,date_col):
+	sales_file = pd.read_csv(file,parse_dates = [date_col])
 	return sales_file
 
 
@@ -16,6 +16,8 @@ def remove_negative(df,negative_col):
 	df = df.copy()
 	df = df[df[negative_col]>0]
 	return df
+
+
 
 
 def normalise_col(rfmtable):
