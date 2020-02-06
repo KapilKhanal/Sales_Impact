@@ -2,7 +2,7 @@ import typing
 import logging
 import numpy as np
 def read_excel(file):
-	sales_file = pd.read_excel(file)
+	sales_file = pd.read_csv(file)
 	return sales_file
 
 
@@ -27,6 +27,15 @@ def normalise_col(rfmtable):
 def join_rfm_orginial(original,rfm,on_col):
 	df = original.merge(rfm,how = 'left',on = [on_col])
 	return df
+
+def give_cluster_df(merged_df_original,cluster):
+	df_cluster = merged_df_original[merged_df_original['cluster']==cluster]
+	return df_cluster
+
+def row_per_date_df(cluster_df):
+	df = cluster_df.groupby(['date'],as_index =True).agg({'TotalCost':sum})
+	return df
+
 
 
 

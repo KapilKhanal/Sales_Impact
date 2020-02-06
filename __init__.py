@@ -15,5 +15,4 @@ from scipy.spatial.distance import cdist
 
 import matplotlib.pyplot as plt
 from pandas.plotting import scatter_matrix
-%matplotlib inline
 import seaborn as sns
