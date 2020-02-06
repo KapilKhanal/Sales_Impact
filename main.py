@@ -1,3 +1,24 @@
+
+
+
+import numpy as np
+import pandas as pd
+import time, warnings
+import datetime as dt
+
+
+import sklearn.cluster as cluster
+from sklearn.cluster import KMeans
+from sklearn.decomposition import PCA
+from sklearn.mixture import GaussianMixture
+
+from sklearn.metrics import silhouette_samples, silhouette_score
+from scipy.spatial.distance import cdist
+
+import matplotlib.pyplot as plt
+from pandas.plotting import scatter_matrix
+
+
 import dataIngestion as di
 import config as config
 import kmeans_clustering as kc
@@ -5,7 +26,7 @@ import causalImpact as cimpact
 import RFM as rfm
 
 def main():
-	original = di.read_csv(config.NAME_DATA)
+	original = di.read_file(config.NAME_DATA)
 	df = di.remove_na(original,config.COLS_WITH_NA)
 	df = di.remove_negative(df,config.NEGATIVE_COL)
 	now = dt.date(config.REFERENCE_DATE)

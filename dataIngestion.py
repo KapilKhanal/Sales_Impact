@@ -1,17 +1,18 @@
 import typing
 import logging
 import numpy as np
-def read_excel(file):
+import pandas as pd
+def read_file(file):
 	sales_file = pd.read_csv(file)
 	return sales_file
 
 
-def remove_na(df:pd.DataFrame, cols_with_na:list)->pd.DataFrame:
+def remove_na(df, cols_with_na):
 	df = df.copy()
 	df.dropna(subset = cols_with_na,how = 'all',inplace = True)
 	return df
 
-def remove_negative(df,negative_col:String):
+def remove_negative(df,negative_col):
 	df = df.copy()
 	df = df[df[negative_col]>0]
 	return df

@@ -3,7 +3,8 @@ from dataIngestion import normalise_col
 def get_matrix(df):
 	return df.as_matrix()
 
- def give_num_clusters(matrix ,min_cluster,max_cluster):
+
+def give_num_clusters(matrix ,min_cluster,max_cluster):
  	distortions = []
  	N_clusters = range(min_cluster,max_cluster)
  	for n in N_clusters:
@@ -24,7 +25,7 @@ def get_df_with_labels(num_cluster,rfmtable):
 	labels = kmeans.label_
 	rfmtable['cluster'] = labels
 	rfmtable.reset_index(inplace= True)
-return rfmtable
+	return rfmtable
 
 
 
