@@ -9,11 +9,11 @@ REFERENCE_YEAR = 2011
 REFERENCE_Month = 12
 REFERENCE_day = 9 #end of the sale period
 INTERVENTION_DATE = '20111002'
+EXPERIMENT_DATE = '20111010'
 JOIN_ON_COL = 'CustomerID'
 
 MIN_CLUSTER = 2
 MAX_CLUSTER = 10
-
-CLUSTER_WANT = 1
-
-
+# Cluster_df date range shoule contain Intervention and Experiment DATE.
+# Streamlit should let people choose cluster first then select dates as Experiment and Intervention
+CLUSTER_WANT = 2

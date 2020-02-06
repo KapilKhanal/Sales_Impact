@@ -36,16 +36,7 @@ def give_cluster_df(merged_df_original,cluster):
 	return df_cluster
 
 def row_per_date_df(cluster_df):
-	df = cluster_df.groupby(['date'],as_index =True).agg({'TotalCost':sum})
+	df = cluster_df.sort_values('date', ascending=True)
+	#df['date'] = pd.to_datetime(df['date'], infer_datetime_format=True)
+	df = df.groupby(['date'],as_index =True).agg({'TotalCost':sum})
 	return df
-
-
-
-
-
-
-
-
-
-
-
