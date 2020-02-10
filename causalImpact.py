@@ -20,6 +20,6 @@ def causal_impact(df):
 	return ci
 
 def plot_ci(ci):
-	ci.plot()
-	print('printing report \n')
-	print(ci.summary('report'))
+	plot = ci.plot(figsize=(15, 12))
+	report = ci.summary(output = 'report')
+	return {'Plot':plot, 'Report':report}

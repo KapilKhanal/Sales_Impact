@@ -6,7 +6,6 @@ def read_file(file,date_col):
 	sales_file = pd.read_csv(file,parse_dates = [date_col])
 	return sales_file
 
-
 def remove_na(df, cols_with_na):
 	df = df.copy()
 	df.dropna(subset = cols_with_na,how = 'all',inplace = True)
@@ -17,14 +16,12 @@ def remove_negative(df,negative_col):
 	df = df[df[negative_col]>0]
 	return df
 
-
-
-
-def normalise_col(rfmtable):
+def normalise_table(rfmtable):
 	rfmtable = rfmtable.copy()
 	rfmtable['recency'] = np.log(rfmtable['recency']+0.1)
 	rfmtable['frequency'] = np.log(rfmtable['frequency'])
 	rfmtable['monetary'] = np.log(rfmtable['monetary']+0.1)
+	rfmtable = rfmtable.set_index('CustomerID')
 	return rfmtable
 
 def join_rfm_orginial(original,rfm,on_col):
