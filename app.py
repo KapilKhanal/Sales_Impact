@@ -1,15 +1,20 @@
+# Streamlit 
 import streamlit as st
 from PIL import Image
-from pandas_profiling import ProfileReport
+import plotly
+import plotly.graph_objs as go
+# Python
+import numpy as np
+import pandas as pd
+import datetime as dt
+#from pandas_profiling import ProfileReport
+# Dependencies
 import dataIngestion as di
 import config as config
 import kmeans_clustering as kc
 import causalImpact as cimpact
 import RFM as rfm
-import pandas as pd
-import datetime as dt
-import plotly
-import plotly.graph_objs as go
+
 
 
 data_path = "Sales_df.csv"
@@ -50,7 +55,7 @@ def main():
         st.write(f"Optimum number of cluster selected is: {Best_N}")
         rfm_with_labels = kc.get_df_with_labels(Best_N, df_normalized)
         st.write(rfm_with_labels['cluster'].value_counts())
-        #st.plotly_chart(kc.plot_clusters(df_normalized))
+        st.plotly_chart(kc.plot_clusters(df_normalized))
     elif page == 'Impact Analysis':
         st.title("Impact Analysis")
         now = dt.date(config.REFERENCE_YEAR ,config.REFERENCE_Month,config.REFERENCE_day)
@@ -59,13 +64,39 @@ def main():
         matrix = kc.get_matrix(df_normalized)
         kmeans_clusters = kc.give_num_clusters(matrix, config.MIN_CLUSTER, config.MAX_CLUSTER)
         Best_N = kmeans_clusters['Best_N']
+        st.write("Best num cluster selected is: ",Best_N)
         rfm_with_labels = kc.get_df_with_labels(Best_N, df_normalized)
         merged_df = di.join_rfm_orginial(data, rfm_with_labels, config.JOIN_ON_COL)
-        before_ci_df = di.give_cluster_df(merged_df, config.CLUSTER_WANT)
-        st.write(before_ci_df['date'].min())
-        ci = cimpact.causal_impact(before_ci_df)
-        Impact = cimpact.plot_ci(ci)
-        st.pyplot(Impact['Plot'])
-        st.write(Impact['Report'])
+        selected_cluster = st.selectbox("Select Cluster to examine",range(Best_N))
+        if selected_cluster == 0:
+            before_ci_df = di.give_cluster_df(merged_df, 0)
+            Dates = cimpact.get_st_dates(before_ci_df)
+            stpre, stmax = Dates['stpre'].date(), Dates['stmax'].date()
+            st.write(f'Intervention dates should be between {stpre} and {stmax}')
+            st.write(f'A good post-intervention date anywhere from 1 day to 1 week after the intervention date.')
+            d = st.date_input("Select intervention date", Dates['stpre'])
+            e = st.date_input("Select post-intervention date", Dates['stpost'])
+            intervention_date = pd.to_datetime(d)
+            post_intervention_date = pd.to_datetime(e)
+            ci = cimpact.causal_impact(before_ci_df, intervention_date,post_intervention_date)
+            Impact = cimpact.plot_ci(ci)
+            st.pyplot(Impact['Plot'])
+            st.write(Impact['Report'])
+        else:
+            before_ci_df = di.give_cluster_df(merged_df, selected_cluster)
+            Dates = cimpact.get_st_dates(before_ci_df)
+            stpre, stmax = Dates['stpre'].date(), Dates['stmax'].date()
+            st.write(f'Intervention dates should be between {stpre} and {stmax}')
+            st.write(f'A good post-intervention date anywhere from 1 day to 1 week after the intervention date.')
+            d = st.date_input("Select intervention date", Dates['stpre'])
+            e = st.date_input("Select post-intervention date", Dates['stpost'])
+            intervention_date = pd.to_datetime(d)
+            post_intervention_date = pd.to_datetime(e)
+            ci = cimpact.causal_impact(before_ci_df, intervention_date,post_intervention_date)
+            Impact = cimpact.plot_ci(ci)
+            st.pyplot(Impact['Plot'])
+            st.write(Impact['Report'])
+            
+            
 if __name__ == "__main__":
     main()

@@ -26,14 +26,15 @@ def normalise_table(rfmtable):
 
 def join_rfm_orginial(original,rfm,on_col):
 	df = original.merge(rfm,how = 'left',on = [on_col])
+	df = df.sort_values('cluster',ascending=True)
 	return df
 
 def give_cluster_df(merged_df_original,cluster):
-	df_cluster = merged_df_original[merged_df_original['cluster']==cluster]
+	df_cluster = merged_df_original[merged_df_original['cluster'] == cluster]
 	return df_cluster
 
-def row_per_date_df(cluster_df):
-	df = cluster_df.sort_values('date', ascending=True)
+def row_per_date_df(df_cluster):
+	df = df_cluster.sort_values('date', ascending=True)
 	#df['date'] = pd.to_datetime(df['date'], infer_datetime_format=True)
 	df = df.groupby(['date'],as_index =True).agg({'TotalCost':sum})
 	return df

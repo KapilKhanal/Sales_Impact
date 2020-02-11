@@ -28,7 +28,7 @@ def main():
 	df = di.remove_negative(df,config.NEGATIVE_COL)
 	now = dt.date(config.REFERENCE_YEAR ,config.REFERENCE_Month,config.REFERENCE_day)
 	rfmtable = rfm.calculate_rfm(df,config.GROUP_BY_COL,config.LIST_COL_AGG,now)
-	df_normalized = di.normalise_col(rfmtable)
+	df_normalized = di.normalise_table(rfmtable)
 	#Kmeans stuff
 	matrix = kc.get_matrix(df_normalized)
 	num_cluster = kc.give_num_clusters(matrix ,config.MIN_CLUSTER,config.MAX_CLUSTER)['best_n']
