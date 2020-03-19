@@ -2,7 +2,8 @@ import numpy as np
 import pandas as pd
 import time, warnings
 import datetime as dt
-import config
+from src.data import *
+from src.features import *
 
 
 import sklearn.cluster as cluster
