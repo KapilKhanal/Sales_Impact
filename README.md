@@ -48,7 +48,21 @@
 ```
 
 # Sales_Impact
-This project looks at how can the introduction of a discount during the holidays affect the total sale of a customer groups. We use statistical techniques like **rfm analysis**, **k-means**, and **causal impact analysis** to study this impact.
+This project looks at how can the introduction of a discount during the holidays affect the total sale of customer groups within a timeframe of a year. The statistical techniques used are:
+
+**rfm analysis (recency, frenquency, monetary)** to analyse customer behavior by examining their transaction history such as
+
+    - how recently a customer has purchased (recency)
+    - how often they purchase (frequency)
+    - how much the customer spends (monetary)
+    
+    RFM helps us identify customers who are more likely to respond to promotions, 
+    
+**k-means** to segment customers into various categories.
+
+**causal impact analysis** to study the impact of discounts within customer groups.
+
+
 
 
 
