@@ -7,7 +7,7 @@
 │   ├── interim <- Intermediate data that has been transformed.
 │   │   ├── Sales_df.csv
 │   │   └── rfmtable.csv
-│   ├── processed <- The final, canonical data sets for modeling.
+│   ├── processed <- Final data sets for modeling.
 │   │   ├── Joined_df.csv
 │   └── raw <- The original, immutable data dump.
 │       ├── CustomerTable.csv
@@ -32,7 +32,7 @@
 │   ├── sales_impact_report.ipynb
 │   └── template.ipynb
 ├── requirement.txt
-└── src <- Source code for use in this project.
+└── src <- Source code used in this project.
     ├── __init__.py
     ├── data
     │   ├── __init__.py
