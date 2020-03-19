@@ -58,9 +58,9 @@ This project looks at how can the introduction of a discount during the holidays
     
 RFM helps us identify customers who are more likely to respond to promotions. 
     
-**K-means** to segment customers into various categories.
+**K-means** to segment customers into various category groups.
 
-**Causal impact analysis** to study the impact of discounts within customer groups.
+**Causal impact analysis** to study the impact of discounts within each customer group.
 
 
 
