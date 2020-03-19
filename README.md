@@ -1,4 +1,19 @@
-# Project Structure
+# Sales Impact of transactional data
+This project looks at how can the introduction of a discount during the holidays affect the total sale of customer groups within a timeframe of a year. The statistical techniques used are:
+
+**RFM analysis** (recency, frenquency, monetary) to analyse customer behavior by examining their transaction history such as,
+
+    - how recently a customer has purchased (recency)
+    - how often they purchase (frequency)
+    - how much the customer spends (monetary)
+    
+RFM helps us identify customers who are more likely to respond to promotions. 
+    
+**K-means** to segment customers into various category groups.
+
+**Causal impact analysis** to study the impact of discounts within each customer group.
+
+## Project Structure
 ```bash
 ├── __init__.py
 ├── sales_dashboard.py <- Streamlit dashboard.
@@ -15,7 +30,7 @@
 │       ├── TransactionsTable.csv
 │       ├── Online_Retail.xlsx
 │       ├── SalesDatabase.db
-├── database 
+├── database <- Database for customer transactions.
 │   ├── __init__.py
 │   ├── creating_tables.py
 │   ├── join_write.py
@@ -46,21 +61,6 @@
         ├── kmeans_clustering.py
         └── report_generator.py
 ```
-
-# Sales_Impact
-This project looks at how can the introduction of a discount during the holidays affect the total sale of customer groups within a timeframe of a year. The statistical techniques used are:
-
-**RFM analysis** (recency, frenquency, monetary) to analyse customer behavior by examining their transaction history such as,
-
-    - how recently a customer has purchased (recency)
-    - how often they purchase (frequency)
-    - how much the customer spends (monetary)
-    
-RFM helps us identify customers who are more likely to respond to promotions. 
-    
-**K-means** to segment customers into various category groups.
-
-**Causal impact analysis** to study the impact of discounts within each customer group.
 
 
 
