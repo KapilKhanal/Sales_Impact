@@ -1,4 +1,4 @@
-# Sales Impact of transactional data
+# Sales Impact of shopping transactions.
 This project looks at how can the introduction of a discount during the holidays affect the total sale of customer groups within a timeframe of a year. The statistical techniques used are:
 
 **RFM analysis** (recency, frenquency, monetary) to analyse customer behavior by examining their transaction history such as,
