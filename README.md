@@ -1,7 +1,7 @@
 # Sales Impact of shopping transactions.
 This project looks at how the introduction of a discount during the holidays affect the total sale within customer groups in a given timeframe. The statistical techniques used are:
 
-**RFM analysis** (recency, frenquency, monetary) to analyse customer behavior by examining their transaction history such as,
+**RFM analysis** (recency, frequency, monetary) to analyse customer behavior by examining their transaction history such as,
 
     - how recently a customer has purchased (recency)
     - how often they purchase (frequency)
@@ -13,7 +13,7 @@ RFM helps us identify customers who are more likely to respond to promotions.
 
 **Causal impact analysis** to study the impact of discounts within each customer group.
 
-This project can be found at https://salesimpact.herokuapp.com/.
+This project can be found at **https://salesimpact.herokuapp.com/.**
 
 ## Project Structure
 ```bash
