@@ -90,7 +90,7 @@ prometheus-client==0.7.1
 prompt-toolkit==3.0.3
 protobuf==3.11.3
 ptyprocess==0.6.0
-py==1.8.1
+py==1.10.0
 pyarrow==0.15.1
 pycausalimpact==0.0.16
 pycodestyle==2.5.0
